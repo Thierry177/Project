@@ -1,0 +1,152 @@
+nav{
+        background-color: rgb(42, 42, 42);
+        color: aliceblue;
+        padding: 20px 40px;
+        display: flex;
+        border: solid 1px;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav-center {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .nav-links li {
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .nav-links li:hover {
+      color: #ffcc00;
+    }
+
+    .search-bar {
+      position: relative;
+    }
+
+    .search-bar input {
+      padding: 6px 30px 6px 10px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .search-bar i {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: gray;
+    }
+
+
+    .nav-icons {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .nav-icons i {
+      font-size: 18px;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .nav-icons i:hover {
+      color: #ffcc00;
+    }
+
+    /* Contenitore principale */
+    .content-layout {
+      display: flex;
+      padding: 10px;
+    }
+
+    /* Aside (sinistra) */
+    aside {
+      width: 150px;
+      padding: 5px;
+      background-color: #f1f1f1;
+    }
+
+    .book-genres {
+      list-style: none;
+      padding-left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .book-genres li {
+      cursor: pointer;
+      padding: 4px 8px;
+      transition: background 0.2s;
+    }
+
+    .book-genres li:hover {
+      background-color: #ddd;
+      border-radius: 4px;
+    }
+
+    .book-genres a {
+      text-decoration: none;     /* toglie la sottolineatura */
+      color: inherit;            /* usa il colore del testo normale */
+    }
+
+    .book-genres a:visited {
+      color: inherit;            /* evita viola dopo il click */
+    }
+
+    .book-genres a:hover {
+      color: inherit;            /* niente cambio colore al passaggio */
+    }
+
+    .book-genres a:active {
+      color: inherit;            /* niente colore speciale durante il click */
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: rgb(42, 42, 42);
+      color: aliceblue;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      margin-top: 20px;
+    }
+
+    footer a {
+      color: #ffcc00;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    footer i {
+      margin: 0 5px;
+      font-size: 18px;
+    }
+
+    .footer-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
