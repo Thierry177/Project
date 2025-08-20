@@ -17,7 +17,7 @@ descrizione TEXT,
 prezzo DECIMAL (10,2) NOT NULL,
 immagine_url TEXT,
 data_pubblicazione DATE,
-categoria_id TEXT,
+categoria_id INT,
 FOREIGN KEY (categoria_id) REFERENCES categorie (id_categoria)
 );
 
