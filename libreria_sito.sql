@@ -8,6 +8,12 @@ ruolo VARCHAR(20) DEFAULT 'cliente',
 data_creazione TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE categorie (
+id_categoria SERIAL PRIMARY KEY,
+nome VARCHAR(100) NOT NULL,
+descrizione TEXT
+);
+
 CREATE TABLE libri (
 id_libro SERIAL PRIMARY KEY,
 titolo VARCHAR(200) NOT NULL,
@@ -19,12 +25,6 @@ immagine_url TEXT,
 data_pubblicazione DATE,
 categoria_id INT,
 FOREIGN KEY (categoria_id) REFERENCES categorie (id_categoria)
-);
-
-CREATE TABLE categorie (
-id_categoria SERIAL PRIMARY KEY,
-nome VARCHAR(100) NOT NULL,
-descrizione TEXT
 );
 
 CREATE TABLE ordini (
