@@ -23,17 +23,27 @@ descrizione TEXT,
 prezzo DECIMAL (10,2) NOT NULL,
 immagine_url TEXT,
 data_pubblicazione DATE,
-categoria_id INT,
+categoria_id BIGINT UNSIGNED,
 FOREIGN KEY (categoria_id) REFERENCES categorie (id_categoria)
-);
+)ENGINE=InnoDB;
 
 CREATE TABLE ordini (
 id_ordine SERIAL PRIMARY KEY,
-id_utente INT NOT NULL,
+id_utente BIGINT UNSIGNED NOT NULL,
+FOREIGN KEY (id_utente) REFERENCES utenti(id_utente),
 totale DECIMAL(10,2) NOT NULL,
 data_creazione TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 FOREIGN KEY (id_utente) REFERENCES utenti(id_utente)
-); 
+)ENGINE=InnoDB;
+
+CREATE TABLE carrello (
+  id_carrello SERIAL PRIMARY KEY,
+  id_utente BIGINT UNSIGNED NOT NULL,
+  id_libro BIGINT UNSIGNED NOT NULL,
+  quantita INT DEFAULT 1,
+  FOREIGN KEY (id_utente) REFERENCES utenti(id_utente),
+  FOREIGN KEY (id_libro) REFERENCES libri(id_libro)
+) ENGINE=InnoDB;
 
 
 
