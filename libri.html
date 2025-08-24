@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Scheda Libro</title>
+
+    <link rel="stylesheet" href="project.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+    <style>
+      main {
+        flex: 1;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .book-detail {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+        max-width: 900px;
+        width: 100%;
+        background: #f9f9f9;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        margin: 0 auto;
+      }
+
+      .book-detail img {
+        max-width: 280px;
+        height: auto;
+        border-radius: 6px;
+        object-fit: cover;
+      }
+
+      .book-info { display: flex; flex-direction: column; gap: 15px; flex: 1; }
+      .book-info h2 { margin: 0; font-size: 28px; color: #333; display: flex; align-items: center; gap: 10px; }
+      .book-info h2 img { width: 32px; height: 48px; border-radius: 4px; object-fit: cover; }
+      .author { font-size: 18px; color: #555; }
+      .price { font-size: 22px; font-weight: bold; color: #222; }
+      .book-description { font-size: 16px; line-height: 1.5; color: #444; }
+      .btn-cart { margin-top: 20px; padding: 12px 20px; background-color: #333; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; transition: background 0.3s; width: fit-content; }
+      .btn-cart:hover { background-color: #555; }
+
+      .book-section { max-width: 1000px; margin: 0 auto; }
+      .book-section h3 { background: #cfcdcd; padding: 10px; border-radius: 6px; margin-bottom: 15px; color: #0c0c0c; }
+
+      .book-slider {
+        display: flex;
+        gap: 15px;
+        overflow-x: auto;
+        padding: 10px 0;
+        scroll-behavior: smooth;
+      }
+      .book-slider::-webkit-scrollbar { height: 6px; }
+      .book-slider::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+
+      .book-card {
+        min-width: 120px;
+        max-width: 140px;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        border-radius: 6px;
+        padding: 8px;
+        background-color: #f0f0f0;
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .book-card:hover { transform: scale(1.05); box-shadow: 0px 4px 8px rgba(0,0,0,0.2); }
+
+      .book-card img { width: 100%; height: 160px; object-fit: cover; border-radius: 4px; }
+      .book-title { margin-top: 6px; font-size: 14px; font-weight: bold; color: #333; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .book-price { font-size: 13px; color: #666; margin-top: 3px; }
+
+      .tag { font-size: 10px; background: #ffcc00; color: #222; padding: 2px 6px; border-radius: 4px; margin-bottom: 4px; }
+      .stars { font-size: 12px; color: #ffcc00; margin-top: 2px; }
+      .see-all {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 140px;
+        background: #333;
+        color: #fff;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+      }
+      .see-all:hover { background: #555; }
+    </style>
+  </head>
+
+  <body>
+    <nav>
+      <div class="logo">logo</div>
+    
+      <div class="nav-center">
+        <ul class="nav-links">
+          <li><a href="project.html" style="color:inherit;text-decoration:none;">Home</a></li> 
+          <li>Contatti</li>
+        </ul>
+
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Cerca...">
+            <button id="search-button">Cerca</button>
+        </div>
+      </div>
+
+      <div class="nav-icons">
+        <ul class="nav-links">
+          <li><a href="login.html" style="color:inherit;text-decoration:none;"><i class="fas fa-user"></i> Login</a></li>
+          <li><a href="ordini.html" style="color:inherit;text-decoration:none;"><i class="fas fa-box"></i>I miei ordini</a></li>
+          <li><a href="carrello.html" style="color:inherit;text-decoration:none;"><i class="fas fa-shopping-cart"></i> Carrello</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="content-layout">
+      <aside>
+        <ul class="book-genres">
+          <li><a href="category.html?cat=Narrativa">Narrativa</a></li>
+          <li><a href="category.html?cat=Thriller">Giallo / Thriller</a></li>
+          <li><a href="category.html?cat=Fantascienza">Fantascienza</a></li>
+          <li><a href="category.html?cat=Fantasy">Fantasy</a></li>
+          <li><a href="category.html?cat=Romanzo Rosa">Romanzo rosa</a></li>
+          <li><a href="category.html?cat=Storico">Storico</a></li>
+          <li><a href="category.html?cat=Horror">Horror</a></li>
+          <li><a href="category.html?cat=Biografie">Biografie</a></li>
+          <li><a href="category.html?cat=Young Adult">Young Adult</a></li>
+          <li><a href="category.html?cat=Classici">Classici</a></li>
+          <li><a href="category.html?cat=Avventura">Avventura</a></li>
+          <li><a href="category.html?cat=Umoristico">Umoristico</a></li>
+          <li><a href="category.html?cat=Psicologico">Psicologico</a></li>
+          <li><a href="category.html?cat=Distopico">Distopico</a></li>
+          <li><a href="category.html?cat=Poesia">Poesia</a></li>
+        </ul>
+      </aside>
+
+      <main>
+        <div class="book-detail">
+          <img id="book-image" src="default.jpg" alt="Copertina libro">
+          <div class="book-info">
+            <h2>
+              <img id="book-mini" src="default.jpg" alt="Miniatura">
+              <span id="book-title">Caricamento...</span>
+            </h2>
+            <div class="author" id="book-author"></div>
+            <div class="price" id="book-price"></div>
+            <div class="book-description" id="book-description"></div>
+            <button id="add-to-cart" class="btn-cart">
+              <i class="fas fa-cart-plus"></i> Aggiungi al carrello
+            </button>
+          </div>
+        </div>
+
+        <div class="book-section">
+          <h3>Potrebbe piacerti anche</h3>
+          <div class="book-slider" id="related-books"></div>
+        </div>
+      </main>
+    </div>
+
+    <footer>
+      <div class="footer-container">
+        <p>&copy; 2025 La tua Libreria Online</p>
+        <p>
+          <a href="#">Termini</a> |
+          <a href="#">Privacy</a> |
+          <a href="#">Contatti</a>
+        </p>
+        <p>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      const userId = 1; // TODO: sostituire con id utente loggato
+      let currentBook = null;
+
+      async function loadBook() {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+        if (!id) {
+          document.querySelector("main").innerHTML = "<p>Nessun libro selezionato</p>";
+          return;
+        }
+
+        try {
+          const res = await fetch(`/api/libri/${id}`);
+          const libro = await res.json();
+
+          if (libro.error) {
+            document.querySelector("main").innerHTML = "<p>Libro non trovato</p>";
+            return;
+          }
+
+          currentBook = libro;
+
+          document.getElementById("book-image").src = libro.immagine_url || "default.jpg";
+          document.getElementById("book-mini").src = libro.immagine_url || "default.jpg";
+          document.getElementById("book-title").textContent = libro.titolo;
+          document.getElementById("book-author").textContent = "di " + libro.autore;
+          document.getElementById("book-price").textContent = "€" + libro.prezzo;
+          document.getElementById("book-description").innerHTML = `<p>${libro.descrizione}</p>`;
+
+          const resCorrelati = await fetch(`/api/categorie/${libro.categoria_id}/libri`);
+          const correlati = await resCorrelati.json();
+
+          const slider = document.getElementById("related-books");
+          slider.innerHTML = "";
+
+          correlati
+            .filter(b => b.id_libro !== libro.id_libro)
+            .forEach(b => {
+              const card = document.createElement("a");
+              card.href = `libro.html?id=${b.id_libro}`;
+              card.className = "book-card";
+              card.innerHTML = `
+                <span class="tag">Cat. ${libro.categoria_id}</span>
+                <img src="${b.immagine_url || "default.jpg"}" alt="">
+                <div class="book-title">${b.titolo}</div>
+                <div class="book-price">€${b.prezzo}</div>
+              `;
+              slider.appendChild(card);
+            });
+        } catch (err) {
+          console.error("Errore caricamento libro:", err);
+        }
+      }
+
+      async function addToCart() {
+        if (!currentBook) return;
+
+        try {
+          const res = await fetch(`/api/carrello/${userId}`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id_libro: currentBook.id_libro })
+          });
+
+          const data = await res.json();
+          alert(data.message || "Libro aggiunto al carrello!");
+          window.location.href = "carrello.html";
+        } catch (err) {
+          console.error("Errore aggiunta al carrello:", err);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        loadBook();
+        document.getElementById("add-to-cart").addEventListener("click", addToCart);
+      });
+    </script>
+  </body>
+</html>
