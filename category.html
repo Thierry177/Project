@@ -77,20 +77,25 @@
   <!-- Nav -->
   <nav>
     <div class="logo">logo</div>
+    
     <div class="nav-center">
       <ul class="nav-links">
-        <li><a href="project.html" style="color:inherit;text-decoration:none;">Home</a></li>
-        <li>Prodotti</li>
+        <li><a href="project.html" style="color:inherit;text-decoration:none;">Home</a></li> 
         <li>Contatti</li>
       </ul>
+
       <div class="search-bar">
-        <input type="text" id="search-input" placeholder="Cerca...">
-        <i class="fas fa-search" id="search-button"></i>
+          <input type="text" id="search-input" placeholder="Cerca...">
+          <button id="search-button">Cerca</button>
       </div>
     </div>
+
     <div class="nav-icons">
-      <span><i class="fas fa-user"></i> Login</span>
-      <span><i class="fas fa-shopping-cart"></i> Carrello</span>
+      <ul class="nav-links">
+        <li><a href="login.html" style="color:inherit;text-decoration:none;"><i class="fas fa-user"></i> Login</a></li>
+        <li><a href="ordini.html" style="color:inherit;text-decoration:none;"><i class="fas fa-box"></i>I miei ordini</a></li>
+        <li><a href="carrello.html" style="color:inherit;text-decoration:none;"><i class="fas fa-shopping-cart"></i> Carrello</a></li>
+      </ul>
     </div>
   </nav>
 
@@ -140,33 +145,55 @@
     </div>
   </footer>
 
-  <script src="libri.js"></script>
   <script src="search-bar.js"></script>
+
   <script>
-    // Prende la categoria dalla URL
+   document.addEventListener("DOMContentLoaded", async () => {
     const params = new URLSearchParams(window.location.search);
     const categoria = params.get("cat");
 
-    // Mostra il titolo
-    document.getElementById("categoria-titolo").textContent = categoria || "Categoria non trovata";
-
-    // Riempie la griglia
+    const titolo = document.getElementById("categoria-titolo");
     const container = document.getElementById("libri-container");
-    if (categoria && libriPerCategoria[categoria]) {
-      libriPerCategoria[categoria].forEach(libro => {
+
+    try {
+      // Prendo tutte le categorie per trovare l'id corrispondente
+      const categorieRes = await fetch("/api/categorie");
+      const categorie = await categorieRes.json();
+      const catObj = categorie.find(c => c.nome === categoria);
+
+      titolo.textContent = categoria || "Categoria non trovata";
+
+      if (!catObj) {
+        container.innerHTML = "<p>Nessuna categoria trovata.</p>";
+        return;
+      }
+
+      // Chiamo i libri della categoria
+      const res = await fetch(`/api/categorie/${catObj.id_categoria}/libri`);
+      const libri = await res.json();
+
+      if (libri.length === 0) {
+        container.innerHTML = "<p>Nessun libro trovato per questa categoria.</p>";
+        return;
+      }
+
+      libri.forEach(libro => {
         const card = document.createElement("a");
         card.className = "book-card";
-        card.href = "scheda_libro.html";
+        card.href = `libri.html?id=${libro.id_libro}`;
         card.innerHTML = `
-          <img src="${libro.img}" alt="${libro.titolo}">
+          <img src="${libro.immagine_url}" alt="${libro.titolo}">
           <div class="book-title">${libro.titolo}</div>
-          <div class="book-price">${libro.prezzo}</div>
+          <div class="book-price">€${libro.prezzo}</div>
         `;
         container.appendChild(card);
       });
-    } else {
-      container.innerHTML = "<p>Nessun libro trovato per questa categoria.</p>";
+    } catch (err) {
+      console.error("Errore caricamento categoria:", err);
     }
+   });
   </script>
+
 </body>
 </html>
+
