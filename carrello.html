@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carrello</title>
+
+  <link rel="stylesheet" href="project.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    main {
+      flex: 1;
+      padding: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      margin-bottom: 60px; /* spazio tra main e footer */
+    }
+
+    h2 { margin-bottom: 20px; }
+
+    .cart-list { display: flex; flex-direction: column; gap: 15px; }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: #f9f9f9;
+    }
+
+    .cart-item img {
+      width: 80px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .cart-info { flex: 1; }
+
+    .cart-title { font-weight: bold; margin-bottom: 4px; }
+
+    .cart-price { color: #333; font-size: 14px; }
+
+    .remove-btn {
+      background: #e74c3c;
+      border: none;
+      color: #fff;
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .remove-btn:hover { background: #c0392b; }
+
+    .cart-summary {
+      margin-top: 20px;
+      text-align: right;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .checkout-btn {
+      margin-top: 15px;
+      margin-bottom: 30px;
+      padding: 12px 20px;
+      background: #333;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      float: right;
+    }
+    .checkout-btn:hover { background: #555; }
+  </style>
+</head>
+
+<body>
+<nav>
+  <div class="logo">logo</div>
+    
+  <div class="nav-center">
+     <ul class="nav-links">
+      <li><a href="project.html" style="color:inherit;text-decoration:none;">Home</a></li> 
+      <li>Contatti</li>
+    </ul>
+
+    <div class="search-bar">
+          <input type="text" id="search-input" placeholder="Cerca...">
+          <button id="search-button">Cerca</button>
+    </div>
+  </div>
+
+  <div class="nav-icons">
+     <ul class="nav-links">
+      <li><a href="login.html" style="color:inherit;text-decoration:none;"><i class="fas fa-user"></i> Login</a></li>
+      <li><a href="ordini.html" style="color:inherit;text-decoration:none;"><i class="fas fa-box"></i>I miei ordini</a></li>
+      <li><a href="carrello.html" style="color:inherit;text-decoration:none;"><i class="fas fa-shopping-cart"></i> Carrello</a></li>
+     </ul>
+  </div>
+</nav>
+
+<div class="content-layout">
+
+  <aside>
+    <ul class="book-genres">
+      <li><a href="category.html?cat=Narrativa">Narrativa</a></li>
+      <li><a href="category.html?cat=Thriller">Giallo / Thriller</a></li>
+      <li><a href="category.html?cat=Fantascienza">Fantascienza</a></li>
+      <li><a href="category.html?cat=Fantasy" >Fantasy</a></li>
+      <li><a href="category.html?cat=Romanzo rosa" >Romanzo rosa</a></li>
+      <li><a href="category.html?cat=Storico" >Storico</a></li>
+      <li><a href="category.html?cat=Horror" >Horror</a></li>
+      <li><a href="category.html?cat=Biografie" >Biografie</a></li>
+      <li><a href="category.html?cat=Young Adult" >Young Adult</a></li>
+      <li><a href="category.html?cat=Classici" >Classici</a></li>
+      <li><a href="category.html?cat=Avventura" >Avventura</a></li>
+      <li><a href="category.html?cat=Umoristico" >Umoristico</a></li>
+      <li><a href="category.html?cat=Psicologico" >Psicologico</a></li>
+      <li><a href="category.html?cat=Distopico" >Distopico</a></li>
+      <li><a href="category.html?cat=Poesia" >Poesia</a></li>
+    </ul>
+  </aside>
+
+  <main>
+    <h2>Il tuo carrello</h2>
+    <div class="cart-list" id="cart-list"></div>
+    <div class="cart-summary" id="cart-summary">Totale: €0</div>
+    <button class="checkout-btn" id="checkout">Procedi all’ordine</button>
+  </main>
+
+</div>
+
+<footer>
+  <div class="footer-container">
+    <p>&copy; 2025 La tua Libreria Online</p>
+    <p>
+      <a href="#">Termini</a> |
+      <a href="#">Privacy</a> |
+      <a href="#">Contatti</a>
+    </p>
+    <p>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+    </p>
+  </div>
+</footer>
+
+<script src="search-bar.js"></script>
+
+<script>
+  const userId = 1; // TODO: sostituire con utente loggato
+  let cartBooks = [];
+
+  async function loadCart() {
+    try {
+      const res = await fetch(`/api/carrello/${userId}`);
+      const items = await res.json();
+      cartBooks = items;
+
+      const list = document.getElementById("cart-list");
+      list.innerHTML = "";
+
+      if (items.length === 0) {
+        list.innerHTML = `<div style="text-align:center; padding:20px; color:#555;">Il tuo carrello è vuoto</div>`;
+        document.getElementById("cart-summary").textContent = "Totale: €0";
+        return;
+      }
+
+      let total = 0;
+
+      items.forEach(item => {
+        total += parseFloat(item.prezzo) * item.quantita;
+
+        // Creo un link cliccabile per il libro
+        const link = document.createElement("a");
+        link.href = `libri.html?id=${item.id_libro}`;
+        link.style.textDecoration = "none";
+        link.style.color = "inherit";
+
+        const div = document.createElement("div");
+        div.className = "cart-item";
+        div.innerHTML = `
+          <img src="${item.immagine_url || "default.jpg"}" alt="">
+          <div class="cart-info">
+            <div class="cart-title">${item.titolo}</div>
+            <div class="cart-price">€${item.prezzo} x ${item.quantita}</div>
+          </div>
+          <button class="remove-btn" onclick="removeFromCart(event, ${item.id_carrello})">Rimuovi</button>
+        `;
+
+        link.appendChild(div);
+        list.appendChild(link);
+      });
+
+      document.getElementById("cart-summary").textContent = "Totale: €" + total.toFixed(2);
+    } catch (err) {
+      console.error("Errore caricamento carrello:", err);
+    }
+  }
+
+  async function removeFromCart(event, id_carrello) {
+    event.preventDefault();     // blocca la navigazione del link
+    event.stopPropagation();    // evita che il click salga al link
+
+    try {
+      await fetch(`/api/carrello/${id_carrello}`, { method: "DELETE" });
+      loadCart();
+    } catch (err) {
+      console.error("Errore rimozione:", err);
+    }
+  }
+
+  async function checkout() {
+    if (cartBooks.length === 0) {
+      alert("Il carrello è vuoto!");
+      return;
+    }
+
+    let total = cartBooks.reduce((sum, b) => sum + parseFloat(b.prezzo) * b.quantita, 0);
+
+    try {
+      const res = await fetch(`/api/ordini`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id_utente: userId, totale: total.toFixed(2) })
+      });
+
+      const data = await res.json();
+      alert(data.message || "Ordine completato!");
+
+      // svuota carrello a schermo
+      cartBooks = [];
+      document.getElementById("cart-list").innerHTML = "";
+      document.getElementById("cart-summary").textContent = "Totale: €0";
+    } catch (err) {
+      console.error("Errore checkout:", err);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    loadCart();
+    document.getElementById("checkout").addEventListener("click", checkout);
+  });
+</script>
+
+</body>
+</html>
