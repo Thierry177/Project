@@ -5,18 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Homepage</title>
 
-  <link rel="stylesheet" 
-   href="project.css"
-   />
-
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    href="project.css"
-    integrity="sha512-dC8QZBlX82Q0GEYewEG7A3wJxRhV2OZ43jklABuXUNuGd+2Aje6mZtzNEjbg3RQIDBoC5S+/YJvO1ebExvprQ=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
   />
+
+  <link rel="stylesheet" href="project.css"/>
   
   <style>
     /* Main (destra) */
@@ -129,18 +123,12 @@
 </head>
 
 <body>
-  
-  <header>
-    <h1>BookStore</h1>
-  </header>
-  
   <nav>
     <div class="logo">logo</div>
     
     <div class="nav-center">
       <ul class="nav-links">
-        <li>Home</li>
-        <li>Prodotti</li> 
+        <li>Home</li> 
         <li>Contatti</li>
       </ul>
 
@@ -148,11 +136,14 @@
           <input type="text" id="search-input" placeholder="Cerca...">
           <button id="search-button">Cerca</button>
       </div>
-     </div>
+    </div>
 
-     <div class="nav-icons">
-      <span><i class="fas fa-user"></i> Login</span>
-      <span><i class="fas fa-shopping-cart"></i>Carrello</span>
+    <div class="nav-icons">
+      <ul class="nav-links">
+        <li><a href="login.html" style="color:inherit;text-decoration:none;"><i class="fas fa-user"></i> Login</a></li>
+        <li><a href="ordini.html" style="color:inherit;text-decoration:none;"><i class="fas fa-box"></i>I miei ordini</a></li>
+        <li><a href="carrello.html" style="color:inherit;text-decoration:none;"><i class="fas fa-shopping-cart"></i> Carrello</a></li>
+      </ul>
     </div>
 
   </nav>
@@ -183,31 +174,6 @@
       <section class="book-category">
         <h2>Narrativa</h2>
           <div class="book-slider">
-            <a href="scheda_libro.html" class="book-card">
-              <img src="https://covers.openlibrary.org/b/id/8231856-L.jpg" alt="Il cacciatore di aquiloni">
-              <div class="book-title">Il cacciatore di aquiloni</div>
-              <div class="book-price">€12,99</div>
-            </a>
-            <a href="scheda_libro.html" class="book-card">
-              <img src="https://covers.openlibrary.org/b/id/10583133-L.jpg" alt="La solitudine dei numeri primi">
-              <div class="book-title">La solitudine dei numeri primi</div>
-              <div class="book-price">€9,99</div>
-            </a>
-            <a href="scheda_libro.html" class="book-card">
-              <img src="https://covers.openlibrary.org/b/id/11148785-L.jpg" alt="Storia di una ladra di libri">
-              <div class="book-title">Storia di una ladra di libri</div>
-              <div class="book-price">€14,50</div>
-            </a>
-            <a href="scheda_libro.html" class="book-card">
-              <img src="https://covers.openlibrary.org/b/id/10909258-L.jpg" alt="Le otto montagne">
-              <div class="book-title">Le otto montagne</div>
-              <div class="book-price">€11,90</div>
-            </a>
-            <a href="scheda_libro.html" class="book-card">
-              <img src="https://covers.openlibrary.org/b/id/10545801-L.jpg" alt="L'amica geniale">
-              <div class="book-title">L'amica geniale</div>
-              <div class="book-price">€10,99</div>
-            </a>
             <a class="see-all" href="category.html?cat=Narrativa">Vedi tutti →</a>
           </div>
       </section>
@@ -215,31 +181,6 @@
       <section class="book-category">
         <h2>Fantasy</h2>
           <div class="book-slider">
-            <a href="scheda_libro.html" class="book-card">
-              <img src="https://covers.openlibrary.org/b/id/10508158-L.jpg" alt="Il signore degli anelli">
-              <div class="book-title">Il signore degli anelli</div>
-              <div class="book-price">€16,99</div>
-            </a>
-            <a href="scheda_libro.html" class="book-card">
-              <img src="https://covers.openlibrary.org/b/id/10925809-L.jpg" alt="Harry Potter e la Pietra Filosofale">
-              <div class="book-title">Harry Potter e la Pietra...</div>
-              <div class="book-price">€8,90</div>
-            </a>
-            <a href="scheda_libro.html" class="book-card">
-              <img src="https://covers.openlibrary.org/b/id/10919783-L.jpg" alt="Eragon">
-              <div class="book-title">Eragon</div>
-              <div class="book-price">€10,50</div>
-            </a>
-            <a href="scheda_libro.html" class="book-card">
-              <img src="https://covers.openlibrary.org/b/id/10186930-L.jpg" alt="Lo hobbit">
-              <div class="book-title">Lo hobbit</div>
-              <div class="book-price">€9,50</div>
-            </a>
-            <a href="scheda_libro.html" class="book-card">
-              <img src="https://covers.openlibrary.org/b/id/11096292-L.jpg" alt="Il nome del vento">
-              <div class="book-title">Il nome del vento</div>
-              <div class="book-price">€13,99</div>
-            </a>
             <a class="see-all" href="category.html?cat=Fantasy">Vedi tutti →</a>
           </div>
       </section>
@@ -248,31 +189,6 @@
       <section class="book-category">
         <h2>Thriller</h2>
           <div class="book-slider">
-            <div class="book-card">
-              <img src="https://covers.openlibrary.org/b/id/11127259-L.jpg" alt="La ragazza del treno">
-              <div class="book-title">La ragazza del treno</div>
-              <div class="book-price">€10,00</div>
-            </div>
-            <div class="book-card">
-              <img src="https://covers.openlibrary.org/b/id/10919718-L.jpg" alt="Uomini che odiano le donne">
-              <div class="book-title">Uomini che odiano...</div>
-              <div class="book-price">€11,99</div>
-            </div>
-            <div class="book-card">
-              <img src="https://covers.openlibrary.org/b/id/8235393-L.jpg" alt="Shutter Island">
-              <div class="book-title">Shutter Island</div>
-              <div class="book-price">€9,75</div>
-            </div>
-            <div class="book-card">
-              <img src="https://covers.openlibrary.org/b/id/8282030-L.jpg" alt="Il silenzio degli innocenti">
-              <div class="book-title">Il silenzio degli...</div>
-              <div class="book-price">€10,90</div>
-            </div>
-            <div class="book-card">
-              <img src="https://covers.openlibrary.org/b/id/10917991-L.jpg" alt="La psichiatra">
-              <div class="book-title">La psichiatra</div>
-              <div class="book-price">€12,40</div>
-            </div>
             <a class="see-all" href="category.html?cat=Thriller">Vedi tutti →</a>
           </div>
       </section>
@@ -281,36 +197,10 @@
       <section class="book-category">
         <h2>Biografie</h2>
           <div class="book-slider">
-            <div class="book-card">
-              <img src="https://covers.openlibrary.org/b/id/8234916-L.jpg" alt="Steve Jobs">
-              <div class="book-title">Steve Jobs</div>
-              <div class="book-price">€15,90</div>
-            </div>
-            <div class="book-card">
-              <img src="https://covers.openlibrary.org/b/id/10438041-L.jpg" alt="Open - Agassi">
-              <div class="book-title">Open - Agassi</div>
-              <div class="book-price">€12,50</div>
-            </div>
-            <div class="book-card">
-              <img src="https://covers.openlibrary.org/b/id/10217625-L.jpg" alt="Becoming - Michelle Obama">
-              <div class="book-title">Becoming</div>
-              <div class="book-price">€13,80</div>
-            </div>
-            <div class="book-card">
-              <img src="https://covers.openlibrary.org/b/id/11146727-L.jpg" alt="Una vita - Italo Svevo">
-              <div class="book-title">Una vita</div>
-              <div class="book-price">€10,20</div>
-            </div>
-            <div class="book-card">
-              <img src="https://covers.openlibrary.org/b/id/10824979-L.jpg" alt="Nel nome di Mandela">
-              <div class="book-title">Nel nome di Mandela</div>
-              <div class="book-price">€11,90</div>
-            </div>
             <a class="see-all" href="category.html?cat=Biografie">Vedi tutti →</a>
           </div>
       </section>
     </main>
-
   </div>
 
   <footer>
@@ -329,9 +219,52 @@
     </div>
   </footer>
 
-  <script src="libri.js"></script>
   <script src="Project.js"></script>
   <script src="search-bar.js"></script>
+
+  <script>
+   document.addEventListener("DOMContentLoaded", async () => {
+    try {
+      // 1. Prendi tutte le categorie
+      const categorieRes = await fetch("/api/categorie");
+      const categorie = await categorieRes.json();
+
+      for (const cat of categorie) {
+        // Trova la sezione HTML corrispondente al nome della categoria
+        const h2List = document.querySelectorAll(".book-category h2");
+        let section = null;
+        h2List.forEach(h2 => {
+          if (h2.textContent.trim() === cat.nome) {
+            section = h2;
+          }
+        });
+        if (!section) continue
+
+        const slider = section.parentElement.querySelector(".book-slider");
+
+        // 2. Prendi libri della categoria
+        const libriRes = await fetch(`/api/categorie/${cat.id_categoria}/libri`);
+        const libri = await libriRes.json();
+
+        // 3. Inserisci i primi 5 libri
+        libri.slice(0, 5).forEach(libro => {
+          const card = document.createElement("a");
+          card.className = "book-card";
+          card.href = `libri.html?id=${libro.id_libro}`;
+          card.innerHTML = `
+            <img src="${libro.immagine_url}" alt="${libro.titolo}">
+            <div class="book-title">${libro.titolo}</div>
+            <div class="book-price">€${libro.prezzo}</div>
+          `;
+          slider.insertBefore(card, slider.querySelector(".see-all"));
+        });
+      }
+    } catch (err) {
+      console.error("Errore caricamento homepage:", err);
+    }
+   });
+  </script>
+
 
 </body>
 </html>
