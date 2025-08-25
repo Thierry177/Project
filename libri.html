@@ -183,10 +183,11 @@
         </p>
       </div>
     </footer>
-
+    
     <script>
       const userId = 1; // TODO: sostituire con id utente loggato
       let currentBook = null;
+      let categorie = [];
 
       async function loadBook() {
         const params = new URLSearchParams(window.location.search);
@@ -197,6 +198,11 @@
         }
 
         try {
+          // 1. Recupera tutte le categorie
+          const categorieRes = await fetch("/api/categorie");
+          categorie = await categorieRes.json();
+
+          // 2. Recupera il libro selezionato
           const res = await fetch(`/api/libri/${id}`);
           const libro = await res.json();
 
@@ -214,6 +220,7 @@
           document.getElementById("book-price").textContent = "€" + libro.prezzo;
           document.getElementById("book-description").innerHTML = `<p>${libro.descrizione}</p>`;
 
+          // 3. Libri correlati
           const resCorrelati = await fetch(`/api/categorie/${libro.categoria_id}/libri`);
           const correlati = await resCorrelati.json();
 
@@ -223,17 +230,22 @@
           correlati
             .filter(b => b.id_libro !== libro.id_libro)
             .forEach(b => {
+              // trova il nome della categoria
+              const cat = categorie.find(c => c.id_categoria === b.categoria_id);
+              const catNome = cat ? cat.nome : "Sconosciuta";
+
               const card = document.createElement("a");
-              card.href = `libro.html?id=${b.id_libro}`;
+              card.href = `libri.html?id=${b.id_libro}`;
               card.className = "book-card";
               card.innerHTML = `
-                <span class="tag">Cat. ${libro.categoria_id}</span>
+                <span class="tag">${catNome}</span>
                 <img src="${b.immagine_url || "default.jpg"}" alt="">
                 <div class="book-title">${b.titolo}</div>
                 <div class="book-price">€${b.prezzo}</div>
               `;
               slider.appendChild(card);
             });
+
         } catch (err) {
           console.error("Errore caricamento libro:", err);
         }
@@ -262,5 +274,7 @@
         document.getElementById("add-to-cart").addEventListener("click", addToCart);
       });
     </script>
+
+    
   </body>
 </html>
