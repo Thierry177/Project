@@ -1,27 +1,29 @@
-nav{
-        background-color: rgb(42, 42, 42);
-        color: aliceblue;
-        padding: 20px 40px;
-        display: flex;
-        border: solid 1px;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #efede5;
     }
 
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-    }
-
-    .nav-center {
+    nav {
+      background-color: #efede5;
+      color: #efede5;
+      padding: 20px 40px; 
       display: flex;
+      border: solid 1px;
+      justify-content: space-between;
       align-items: center;
-      gap: 30px;
-      flex: 1;
-      justify-content: center;
+      flex-wrap: wrap;
     }
 
+    /* Logo nella navbar */
+    .logo img {
+      height: 85px;          
+      width: auto;        
+      display: block;
+      margin-left: 100px;
+    }
+
+
+    /* Links generici */
     .nav-links {
       display: flex;
       gap: 20px;
@@ -33,10 +35,33 @@ nav{
       transition: color 0.3s;
     }
 
-    .nav-links li:hover {
-      color: #ffcc00;
+    .nav-left,
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 30px;      
     }
 
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 30px;      
+      margin-left: 5px; 
+    }
+
+    /* Colore link navbar */
+    .nav-left a,
+    .nav-right a {
+      color: #333;
+      text-decoration: none;
+    }
+
+    .nav-left a:hover,
+    .nav-right a:hover {
+      text-decoration: underline;
+    }
+
+    /* Search bar */
     .search-bar {
       position: relative;
     }
@@ -55,11 +80,15 @@ nav{
       color: gray;
     }
 
-
+    /* Icone */
     .nav-icons {
       display: flex;
       gap: 20px;
       align-items: center;
+    }
+
+    .nav-icons li {
+      list-style: none;
     }
 
     .nav-icons i {
@@ -69,8 +98,63 @@ nav{
     }
 
     .nav-icons i:hover {
-      color: #ffcc00;
+      color: #828080;
     }
+
+    .nav-icons a i {
+      color: #333;  
+    }
+
+    .nav-icons a i:hover {
+      color: #828080; 
+    }
+
+
+
+    /* Dropdown menu */
+    .dropdown {
+      position: relative;
+    }
+
+    /* Nasconde la tendina di default */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: -50px;        
+      min-width: 600px;               
+      background-color: #efede5;      
+      padding: 20px 30px;          
+      gap: 60px;                   
+      z-index: 1000;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    /* Colonne interne */
+    .dropdown-col {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Link */
+    .dropdown-content a {
+      color: #333;
+      text-decoration: none;
+      padding: 5px 0;
+    }
+
+    .dropdown-content a:hover {
+      color: #aaaaaa;
+      text-decoration: none;
+    }
+
+    /* Mostra la tendina solo su hover */
+    .dropdown:hover .dropdown-content {
+      display: flex;
+    }
+
 
     /* Contenitore principale */
     .content-layout {
@@ -78,53 +162,10 @@ nav{
       padding: 10px;
     }
 
-    /* Aside (sinistra) */
-    aside {
-      width: 150px;
-      padding: 5px;
-      background-color: #f1f1f1;
-    }
-
-    .book-genres {
-      list-style: none;
-      padding-left: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .book-genres li {
-      cursor: pointer;
-      padding: 4px 8px;
-      transition: background 0.2s;
-    }
-
-    .book-genres li:hover {
-      background-color: #ddd;
-      border-radius: 4px;
-    }
-
-    .book-genres a {
-      text-decoration: none;     /* toglie la sottolineatura */
-      color: inherit;            /* usa il colore del testo normale */
-    }
-
-    .book-genres a:visited {
-      color: inherit;            /* evita viola dopo il click */
-    }
-
-    .book-genres a:hover {
-      color: inherit;            /* niente cambio colore al passaggio */
-    }
-
-    .book-genres a:active {
-      color: inherit;            /* niente colore speciale durante il click */
-    }
-
     /* FOOTER */
     footer {
-      background-color: rgb(42, 42, 42);
-      color: aliceblue;
+      background-color: #efede5;
+      color: #333;
       text-align: center;
       padding: 20px;
       font-size: 14px;
@@ -132,7 +173,7 @@ nav{
     }
 
     footer a {
-      color: #ffcc00;
+      color: #333;
       text-decoration: none;
       margin: 0 5px;
     }
@@ -149,4 +190,40 @@ nav{
     .footer-container {
       max-width: 800px;
       margin: 0 auto;
+    }
+
+    /* Banner */
+    .banner {
+      position: relative;
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .banner img {
+      width: 100%;
+      height: auto;   
+      display: block; 
+    }
+
+    /* Bottone dentro il banner */
+    .banner-btn {
+      position: absolute;
+      left: 50%;
+      bottom: 15%;              
+      transform: translateX(-50%);
+      padding: 12px 28px;
+      background-color: #efede5;
+      color: #2f7453;
+      font-size: 18px;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .banner-btn:hover {
+      background-color: #bdbdba;
+      transform: translateX(-50%) scale(1.05);
     }
