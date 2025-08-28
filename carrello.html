@@ -45,7 +45,7 @@
     .cart-price { color: #333; font-size: 14px; }
 
     .remove-btn {
-      background: #e74c3c;
+      background: #a12c24;
       border: none;
       color: #fff;
       padding: 6px 10px;
@@ -78,51 +78,65 @@
 </head>
 
 <body>
-<nav>
-  <div class="logo">logo</div>
-    
-  <div class="nav-center">
-     <ul class="nav-links">
-      <li><a href="project.html" style="color:inherit;text-decoration:none;">Home</a></li> 
-      <li>Contatti</li>
-    </ul>
+  <nav>
+    <!-- Sinistra -->
+    <div class="nav-left">
+      <ul class="nav-links">
+        <li><a href="category.html?cat=Novità">Novità</a></li>
 
-    <div class="search-bar">
-          <input type="text" id="search-input" placeholder="Cerca...">
-          <button id="search-button">Cerca</button>
+        <li class="dropdown">
+          <a href="#" class="dropbtn" onclick="return false;">Categorie</a>
+          <div class="dropdown-content">
+            <div class="dropdown-col">
+              <a href="category.html?cat=Narrativa">Narrativa</a>
+              <a href="category.html?cat=Thriller">Giallo / Thriller</a>
+              <a href="category.html?cat=Fantascienza">Fantascienza</a>
+              <a href="category.html?cat=Fantasy">Fantasy</a>
+              <a href="category.html?cat=Romanzo rosa">Romanzo rosa</a>
+            </div>
+            <div class="dropdown-col">
+              <a href="category.html?cat=Storico">Storico</a>
+              <a href="category.html?cat=Horror">Horror</a>
+              <a href="category.html?cat=Biografie">Biografie</a>
+              <a href="category.html?cat=Young Adult">Young Adult</a>
+              <a href="category.html?cat=Classici">Classici</a>
+            </div>
+            <div class="dropdown-col">
+              <a href="category.html?cat=Avventura">Avventura</a>
+              <a href="category.html?cat=Umoristico">Umoristico</a>
+              <a href="category.html?cat=Psicologico">Psicologico</a>
+              <a href="category.html?cat=Distopico">Distopico</a>
+              <a href="category.html?cat=Poesia">Poesia</a>
+            </div>
+          </div>
+        </li>
+
+        <li><a href="about.html">Chi siamo</a></li>
+      </ul>
     </div>
-  </div>
 
-  <div class="nav-icons">
-     <ul class="nav-links">
-      <li><a href="login.html" style="color:inherit;text-decoration:none;"><i class="fas fa-user"></i> Login</a></li>
-      <li><a href="ordini.html" style="color:inherit;text-decoration:none;"><i class="fas fa-box"></i>I miei ordini</a></li>
-      <li><a href="carrello.html" style="color:inherit;text-decoration:none;"><i class="fas fa-shopping-cart"></i> Carrello</a></li>
-     </ul>
-  </div>
-</nav>
+    <!-- Centro -->
+    <div class="logo">
+      <a href="project.html">
+        <img src="images/LOGO.png" alt="Logo Libreria" class="logo-img">
+      </a>
+    </div>
+
+    <!-- Destra -->
+    <div class="nav-right">
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Cerca...">
+        <i id="search-button" class="fas fa-search" style="cursor:pointer;"></i>
+      </div>
+      <ul class="nav-icons">
+        <li><a id="userLink" href="#"><i class="fas fa-user"></i></a></li>
+        <li><a href="ordini.html">I miei ordini</a></li>
+        <li><a href="carrello.html"><i class="fas fa-shopping-cart"></i></a></li>
+      </ul>
+    </div>
+  </nav>
 
 <div class="content-layout">
-
-  <aside>
-    <ul class="book-genres">
-      <li><a href="category.html?cat=Narrativa">Narrativa</a></li>
-      <li><a href="category.html?cat=Thriller">Giallo / Thriller</a></li>
-      <li><a href="category.html?cat=Fantascienza">Fantascienza</a></li>
-      <li><a href="category.html?cat=Fantasy" >Fantasy</a></li>
-      <li><a href="category.html?cat=Romanzo rosa" >Romanzo rosa</a></li>
-      <li><a href="category.html?cat=Storico" >Storico</a></li>
-      <li><a href="category.html?cat=Horror" >Horror</a></li>
-      <li><a href="category.html?cat=Biografie" >Biografie</a></li>
-      <li><a href="category.html?cat=Young Adult" >Young Adult</a></li>
-      <li><a href="category.html?cat=Classici" >Classici</a></li>
-      <li><a href="category.html?cat=Avventura" >Avventura</a></li>
-      <li><a href="category.html?cat=Umoristico" >Umoristico</a></li>
-      <li><a href="category.html?cat=Psicologico" >Psicologico</a></li>
-      <li><a href="category.html?cat=Distopico" >Distopico</a></li>
-      <li><a href="category.html?cat=Poesia" >Poesia</a></li>
-    </ul>
-  </aside>
 
   <main>
     <h2>Il tuo carrello</h2>
@@ -150,67 +164,92 @@
 </footer>
 
 <script src="search-bar.js"></script>
+<script src="user-icon.js"></script>
 
 <script>
-  const userId = 1; // TODO: sostituire con utente loggato
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userId = user ? user.id : null;
+
   let cartBooks = [];
+
+  document.addEventListener("DOMContentLoaded", () => {
+    loadCart();
+    document.getElementById("checkout").addEventListener("click", checkout);
+  });
 
   async function loadCart() {
     try {
-      const res = await fetch(`/api/carrello/${userId}`);
-      const items = await res.json();
-      cartBooks = items;
-
-      const list = document.getElementById("cart-list");
-      list.innerHTML = "";
-
-      if (items.length === 0) {
-        list.innerHTML = `<div style="text-align:center; padding:20px; color:#555;">Il tuo carrello è vuoto</div>`;
-        document.getElementById("cart-summary").textContent = "Totale: €0";
-        return;
+      if (userId) {
+        // caso utente loggato → prendo dal backend
+        const res = await fetch(`/api/carrello/${userId}`);
+        cartBooks = await res.json();
+      } else {
+        // caso ospite → prendo dal localStorage
+        cartBooks = JSON.parse(localStorage.getItem("cart")) || [];
       }
 
-      let total = 0;
-
-      items.forEach(item => {
-        total += parseFloat(item.prezzo) * item.quantita;
-
-        // Creo un link cliccabile per il libro
-        const link = document.createElement("a");
-        link.href = `libri.html?id=${item.id_libro}`;
-        link.style.textDecoration = "none";
-        link.style.color = "inherit";
-
-        const div = document.createElement("div");
-        div.className = "cart-item";
-        div.innerHTML = `
-          <img src="${item.immagine_url || "default.jpg"}" alt="">
-          <div class="cart-info">
-            <div class="cart-title">${item.titolo}</div>
-            <div class="cart-price">€${item.prezzo} x ${item.quantita}</div>
-          </div>
-          <button class="remove-btn" onclick="removeFromCart(event, ${item.id_carrello})">Rimuovi</button>
-        `;
-
-        link.appendChild(div);
-        list.appendChild(link);
-      });
-
-      document.getElementById("cart-summary").textContent = "Totale: €" + total.toFixed(2);
+      renderCart();
     } catch (err) {
       console.error("Errore caricamento carrello:", err);
     }
   }
 
-  async function removeFromCart(event, id_carrello) {
-    event.preventDefault();     // blocca la navigazione del link
-    event.stopPropagation();    // evita che il click salga al link
+  function renderCart() {
+    const list = document.getElementById("cart-list");
+    list.innerHTML = "";
 
-    try {
-      await fetch(`/api/carrello/${id_carrello}`, { method: "DELETE" });
-      loadCart();
-    } catch (err) {
-      console.error("Errore rimozione:", err);
+    if (cartBooks.length === 0) {
+      list.innerHTML = `<div style="text-align:center; padding:20px; color:#555;">Il tuo carrello è vuoto</div>`;
+      document.getElementById("cart-summary").textContent = "Totale: €0";
+      return;
+    }
+
+    let total = 0;
+
+    cartBooks.forEach((item, index) => {
+      const prezzo = parseFloat(item.prezzo);
+      const quantita = item.quantita || 1;
+      total += prezzo * quantita;
+
+      // Creo link al libro
+      const link = document.createElement("a");
+      link.href = `libri.html?id=${item.id_libro || item.id}`;
+      link.style.textDecoration = "none";
+      link.style.color = "inherit";
+
+      const div = document.createElement("div");
+      div.className = "cart-item";
+      div.innerHTML = `
+        <img src="${item.immagine_url || "default.jpg"}" alt="">
+        <div class="cart-info">
+          <div class="cart-title">${item.titolo}</div>
+          <div class="cart-price">€${prezzo} x ${quantita}</div>
+        </div>
+        <button class="remove-btn" onclick="removeFromCart(event, ${index})">Rimuovi</button>
+      `;
+
+      link.appendChild(div);
+      list.appendChild(link);
+    });
+
+    document.getElementById("cart-summary").textContent = "Totale: €" + total.toFixed(2);
+  }
+
+  function removeFromCart(event, index) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (userId) {
+      // backend
+      const id_carrello = cartBooks[index].id_carrello;
+      fetch(`/api/carrello/${id_carrello}`, { method: "DELETE" })
+        .then(loadCart)
+        .catch(err => console.error("Errore rimozione:", err));
+    } else {
+      // localStorage
+      cartBooks.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cartBooks));
+      renderCart();
     }
   }
 
@@ -220,7 +259,12 @@
       return;
     }
 
-    let total = cartBooks.reduce((sum, b) => sum + parseFloat(b.prezzo) * b.quantita, 0);
+    if (!userId) {
+      alert("Devi effettuare il login per completare l’ordine.");
+      return;
+    }
+
+    let total = cartBooks.reduce((sum, b) => sum + parseFloat(b.prezzo) * (b.quantita || 1), 0);
 
     try {
       const res = await fetch(`/api/ordini`, {
@@ -232,7 +276,7 @@
       const data = await res.json();
       alert(data.message || "Ordine completato!");
 
-      // svuota carrello a schermo
+      // svuota carrello
       cartBooks = [];
       document.getElementById("cart-list").innerHTML = "";
       document.getElementById("cart-summary").textContent = "Totale: €0";
@@ -240,12 +284,8 @@
       console.error("Errore checkout:", err);
     }
   }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    loadCart();
-    document.getElementById("checkout").addEventListener("click", checkout);
-  });
 </script>
+
 
 </body>
 </html>
