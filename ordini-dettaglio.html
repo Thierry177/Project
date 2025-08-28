@@ -6,165 +6,272 @@
   <link rel="stylesheet" href="project.css">
   
   <style>
-    main { padding: 20px; }
+    .order-layout {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      gap: 30px;
+      margin: 30px auto;
+      max-width: 1200px;
+      min-height: 60vh;
+    }
+
+    .order-info,
+    .books-list,
+    .order-actions {
+      background: none;
+      border: none;
+      padding: 10px;
+    }
+
+    .order-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding-top: 50px;
+      padding-right: 20px;
+      height: 100%;
+    }
+
+    .order-actions button {
+      width: 180px;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    #cancel-button {
+      background-color: #3b936a;
+      color: white;
+    }
+
+    #cancel-button:hover {
+      background-color: #105a3c;
+    }
+
+    #back-button {
+      background-color: #3b936a;
+      color: white;
+    }
+
+    #back-button:hover {
+      background-color: #105a3c;
+    }
+
+    .order-info {
+      background: #fff;
+      padding: 30px 25px;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .order-info p {
+      margin: 0;
+      font-size: 1.1rem;
+      line-height: 1.5;
+      color: #333;
+    }
+
+    .order-info strong {
+      color: #111;
+      font-size: 1.15rem;
+    }
+
     .book-item {
       display: flex;
       align-items: center;
-      border-bottom: 1px solid #ddd;
       padding: 10px 0;
+      border-bottom: 1px solid #ddd;
     }
+
+    .book-item:last-child {
+      border-bottom: none;
+    }
+
     .book-item img {
       width: 60px;
       margin-right: 15px;
+      border-radius: 4px;
     }
-    .book-item h4 { margin: 0; }
-    .book-item p { margin: 4px 0; }
+
+    .book-item h4 {
+      margin: 0;
+    }
+
+    .book-item p {
+      margin: 4px 0;
+      font-size: 0.95rem;
+      color: #555;
+    }
   </style>
 </head>
 
 <body>
   <nav>
-    <div class="logo">logo</div>
-    
-    <div class="nav-center">
+    <!-- Sinistra -->
+    <div class="nav-left">
       <ul class="nav-links">
-        <li>Home</li> 
-        <li>Contatti</li>
-      </ul>
+        <li><a href="category.html?cat=Novità">Novità</a></li>
 
-      <div class="search-bar">
-          <input type="text" id="search-input" placeholder="Cerca...">
-          <button id="search-button">Cerca</button>
-      </div>
+        <li class="dropdown">
+          <a href="#" class="dropbtn" onclick="return false;">Categorie</a>
+          <div class="dropdown-content">
+            <div class="dropdown-col">
+              <a href="category.html?cat=Narrativa">Narrativa</a>
+              <a href="category.html?cat=Thriller">Giallo / Thriller</a>
+              <a href="category.html?cat=Fantascienza">Fantascienza</a>
+              <a href="category.html?cat=Fantasy">Fantasy</a>
+              <a href="category.html?cat=Romanzo rosa">Romanzo rosa</a>
+            </div>
+            <div class="dropdown-col">
+              <a href="category.html?cat=Storico">Storico</a>
+              <a href="category.html?cat=Horror">Horror</a>
+              <a href="category.html?cat=Biografie">Biografie</a>
+              <a href="category.html?cat=Young Adult">Young Adult</a>
+              <a href="category.html?cat=Classici">Classici</a>
+            </div>
+            <div class="dropdown-col">
+              <a href="category.html?cat=Avventura">Avventura</a>
+              <a href="category.html?cat=Umoristico">Umoristico</a>
+              <a href="category.html?cat=Psicologico">Psicologico</a>
+              <a href="category.html?cat=Distopico">Distopico</a>
+              <a href="category.html?cat=Poesia">Poesia</a>
+            </div>
+          </div>
+        </li>
+
+        <li><a href="about.html">Chi siamo</a></li>
+      </ul>
     </div>
 
-    <div class="nav-icons">
-      <ul class="nav-links">
-        <li><a href="login.html" style="color:inherit;text-decoration:none;"><i class="fas fa-user"></i> Login</a></li>
-        <li><a href="ordini.html" style="color:inherit;text-decoration:none;"><i class="fas fa-box"></i>I miei ordini</a></li>
-        <li><a href="carrello.html" style="color:inherit;text-decoration:none;"><i class="fas fa-shopping-cart"></i> Carrello</a></li>
+    <!-- Centro -->
+    <div class="logo">
+      <a href="project.html">
+        <img src="images/LOGO.png" alt="Logo Libreria" class="logo-img">
+      </a>
+    </div>
+
+    <!-- Destra -->
+    <div class="nav-right">
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Cerca...">
+        <i id="search-button" class="fas fa-search" style="cursor:pointer;"></i>
+      </div>
+      <ul class="nav-icons">
+        <li><a id="userLink" href="#"><i class="fas fa-user"></i></a></li>
+        <li><a href="ordini.html">I miei ordini</a></li>
+        <li><a href="carrello.html"><i class="fas fa-shopping-cart"></i></a></li>
       </ul>
     </div>
   </nav>
 
 <div class="content-layout">
-    <!-- ASIDE -->
-    <aside>
-      <ul class="book-genres">
-        <li><a href="category.html?cat=Narrativa">Narrativa</a></li>
-        <li><a href="category.html?cat=Thriller">Giallo / Thriller</a></li>
-        <li><a href="category.html?cat=Fantascienza">Fantascienza</a></li>
-        <li><a href="category.html?cat=Fantasy">Fantasy</a></li>
-        <li><a href="category.html?cat=Romanzo rosa">Romanzo rosa</a></li>
-        <li><a href="category.html?cat=Storico">Storico</a></li>
-        <li><a href="category.html?cat=Horror">Horror</a></li>
-        <li><a href="category.html?cat=Biografie">Biografie</a></li>
-        <li><a href="category.html?cat=Young Adult">Young Adult</a></li>
-        <li><a href="category.html?cat=Classici">Classici</a></li>
-        <li><a href="category.html?cat=Avventura">Avventura</a></li>
-        <li><a href="category.html?cat=Umoristico">Umoristico</a></li>
-        <li><a href="category.html?cat=Psicologico">Psicologico</a></li>
-        <li><a href="category.html?cat=Distopico">Distopico</a></li>
-        <li><a href="category.html?cat=Poesia">Poesia</a></li>
-      </ul>
-    </aside>
-
   <main>
     <h2>Dettaglio Ordine</h2>
-    <div id="order-info"></div>
-    <h3>Libri acquistati</h3>
-    <div id="books-list"></div>
-
-    <div style="display: flex; justify-content: space-between; margin-top: 20px;">
-      <button id="back-button">← Torna agli ordini</button>
-      <button id="cancel-button" style="background-color: #e74c3c; color: white;">Annulla Ordine</button>
+    <div class="order-layout">
+      <div class="order-info" id="order-info"></div>
+      <div class="books-list" id="books-list"></div>
+      <div class="order-actions">
+        <button id="cancel-button">Annulla Ordine</button>
+        <button id="back-button">Torna agli ordini</button>
+      </div>
     </div>
-
   </main>
 </div>
 
-  <footer>
-    <div class="footer-container">
-      <p>&copy; 2025 La tua Libreria Online</p>
-      <p>
-        <a href="#">Termini</a> |
-        <a href="#">Privacy</a> |
-        <a href="#">Contatti</a>
-      </p>
-      <p>
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-      </p>
-    </div>
-  </footer>
+<footer>
+  <div class="footer-container">
+    <p>&copy; 2025 La tua Libreria Online</p>
+    <p>
+      <a href="#">Termini</a> |
+      <a href="#">Privacy</a> |
+      <a href="#">Contatti</a>
+    </p>
+    <p>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+    </p>
+  </div>
+</footer>
 
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const orderId = params.get("id");
-    const userId = 1; // TODO: utente loggato
+<script src="search-bar.js"></script>
+<script src="user-icon.js"></script>
 
-    async function loadOrderDetail() {
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const orderId = params.get("id");
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userId = user ? user.id : null;
+
+  async function loadOrderDetail() {
     try {
-        const res = await fetch(`/api/ordini/${userId}`);
-        const orders = await res.json();
-
-        const ordine = orders.find(o => o.id_ordine == orderId);
-        if (!ordine) {
+      // 1. prendo l'ordine
+      const res = await fetch(`/api/ordini/${userId}`);
+      const orders = await res.json();
+      const ordine = orders.find(o => o.id_ordine == orderId);
+      if (!ordine) {
         document.getElementById("order-info").innerHTML = "<p>Ordine non trovato.</p>";
         return;
-        }
+      }
 
-        // info ordine
-        document.getElementById("order-info").innerHTML = `
+      // 2. prendo dati utente aggiornati dal server
+      const resUser = await fetch(`/api/utenti/${userId}`);
+      const userData = await resUser.json();
+
+      // 3. mostro info ordine
+      document.getElementById("order-info").innerHTML = `
         <p><strong>ID Ordine:</strong> #${ordine.id_ordine}</p>
         <p><strong>Totale:</strong> €${parseFloat(ordine.totale).toFixed(2)}</p>
         <p><strong>Data:</strong> ${new Date(ordine.data_creazione).toLocaleString("it-IT")}</p>
-        `;
+        <p><strong>Indirizzo:</strong> ${userData.indirizzo || "Non disponibile"}</p>
+      `;
 
-        // lista libri
-        const container = document.getElementById("books-list");
-        container.innerHTML = "";
-        ordine.libri_json.forEach(libro => {
+      // 4. lista libri
+      const container = document.getElementById("books-list");
+      container.innerHTML = "";
+      ordine.libri_json.forEach(libro => {
         const div = document.createElement("div");
         div.className = "book-item";
         div.innerHTML = `
-            <img src="${libro.immagine_url}" alt="${libro.titolo}">
-            <div>
+          <img src="${libro.immagine_url}" alt="${libro.titolo}">
+          <div>
             <h4>${libro.titolo}</h4>
             <p>Prezzo: €${libro.prezzo}</p>
             <p>Quantità: ${libro.quantita}</p>
-            </div>
+          </div>
         `;
         container.appendChild(div);
-        });
+      });
 
-        // ----- PULSANTI -----
-        document.getElementById("back-button").addEventListener("click", () => {
+      // 5. pulsanti
+      document.getElementById("back-button").addEventListener("click", () => {
         window.location.href = "ordini.html";
-        });
+      });
 
-        document.getElementById("cancel-button").addEventListener("click", async () => {
+      document.getElementById("cancel-button").addEventListener("click", async () => {
         if (!confirm("Sei sicuro di voler annullare questo ordine?")) return;
-
-        try {
-            const res = await fetch(`/api/ordini/${orderId}`, { method: "DELETE" });
-            const data = await res.json();
-            alert(data.message);
-            window.location.href = "ordini.html"; // torna alla lista
-        } catch (err) {
-            console.error("Errore annullamento ordine:", err);
-            alert("Errore annullamento ordine");
-        }
-        });
+        const res = await fetch(`/api/ordini/${orderId}`, { method: "DELETE" });
+        const data = await res.json();
+        alert(data.message);
+        window.location.href = "ordini.html";
+      });
 
     } catch (err) {
-        console.error("Errore caricamento dettaglio ordine:", err);
+      console.error("Errore caricamento dettaglio ordine:", err);
     }
-    }
+  }
 
-    document.addEventListener("DOMContentLoaded", loadOrderDetail);
+  document.addEventListener("DOMContentLoaded", loadOrderDetail);
+</script>
 
-  </script>
 </body>
 </html>
