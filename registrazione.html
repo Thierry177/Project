@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrazione</title>
+  <link rel="stylesheet" href="project.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #efede5;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .register-container {
+      background: white;
+      padding: 40px 35px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      width: 380px;
+      text-align: center;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .register-container h2 {
+      margin-bottom: 25px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .register-container input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 15px;
+      transition: all 0.2s ease;
+    }
+
+    .register-container input:focus {
+      border-color: #3b936a;
+      box-shadow: 0 0 6px rgba(59,147,106,0.4);
+      outline: none;
+    }
+
+    .register-container button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #3b936a, #105a3c);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      margin-top: 15px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .register-container button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    .register-container p {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .register-container a {
+      color: #105a3c;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .register-container a:hover {
+      text-decoration: underline;
+    }
+
+    #msg {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="register-container">
+    <h2>Crea il tuo account</h2>
+    <form id="registerForm">
+      <input type="text" id="nome" placeholder="Nome" required>
+      <input type="text" id="cognome" placeholder="Cognome" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <input type="text" id="indirizzo" placeholder="Indirizzo">
+      <button type="submit">Crea account</button>
+    </form>
+    <p>Hai già un account? <a href="login.html">Accedi</a></p>
+    <p id="msg"></p>
+  </div>
+
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const nome = document.getElementById("nome").value;
+      const cognome = document.getElementById("cognome").value;
+      const email = document.getElementById("email").value;
+      const password_ = document.getElementById("password").value;
+      const indirizzo = document.getElementById("indirizzo").value;
+
+      try {
+        const res = await fetch("/api/utenti", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ nome, cognome, email, password_, indirizzo })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          document.getElementById("msg").style.color = "green";
+          document.getElementById("msg").textContent = "Registrazione completata! Reindirizzamento...";
+          setTimeout(() => window.location.href = "login.html", 1500);
+        } else {
+          document.getElementById("msg").style.color = "red";
+          document.getElementById("msg").textContent = data.error || "Errore registrazione";
+        }
+      } catch (err) {
+        document.getElementById("msg").style.color = "red";
+        document.getElementById("msg").textContent = "Errore di connessione";
+      }
+    });
+  </script>
+</body>
+</html>
