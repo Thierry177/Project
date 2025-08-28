@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Profilo Utente</title>
+  <link rel="stylesheet" href="project.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #efede5;
+      margin: 0;
+    }
+
+    .profile-wrapper {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px 30px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #105a3c;
+    }
+
+    .profile-field {
+      margin-bottom: 15px;
+    }
+
+    .profile-field label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #333;
+    }
+
+    .profile-field input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    .profile-actions {
+      margin-top: 20px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .profile-actions button {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn-edit {
+      background: #3b936a;
+      color: white;
+    }
+
+    .btn-edit:hover {
+      background: #2f7453;
+    }
+
+    .btn-save {
+      background: #3b936a;
+      color: white;
+    }
+
+    .btn-save:hover {
+      background: #2f7453;
+    }
+
+    #msg {
+      margin-top: 15px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .btn-back {
+      background: transparent;
+      border: none;
+      color: #105a3c;
+      font-size: 15px; 
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 15px;
+      padding: 6px 0;
+      text-align: left;
+    }
+
+    .btn-back:hover {
+      text-decoration: underline;
+    }
+
+
+  </style>
+</head>
+<body>
+  <nav>
+    <!-- puoi riusare la navbar di project.html se vuoi -->
+  </nav>
+
+  <div class="profile-wrapper">
+    <button type="button" id="backBtn" class="btn-back">Torna indietro</button>
+    <h2>Il tuo profilo</h2>
+    <form id="profileForm">
+      <div class="profile-field">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" disabled>
+      </div>
+      <div class="profile-field">
+        <label for="cognome">Cognome</label>
+        <input type="text" id="cognome" disabled>
+      </div>
+      <div class="profile-field">
+        <label for="email">Email</label>
+        <input type="email" id="email" disabled>
+      </div>
+      <div class="profile-field">
+        <label for="indirizzo">Indirizzo</label>
+        <input type="text" id="indirizzo" disabled>
+      </div>
+
+      <div class="profile-actions">
+        <button type="button" id="editBtn" class="btn-edit">Modifica</button>
+        <button type="submit" id="saveBtn" class="btn-save" disabled>Salva</button>
+      </div>
+      <p id="msg"></p>
+    </form>
+  </div>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+      window.location.href = "login.html";
+    }
+
+    const form = document.getElementById("profileForm");
+    const editBtn = document.getElementById("editBtn");
+    const saveBtn = document.getElementById("saveBtn");
+    const msg = document.getElementById("msg");
+
+    const inputs = ["nome", "cognome", "email", "indirizzo"].map(id => document.getElementById(id));
+
+    // TODO: se hai creato un endpoint GET /api/utenti/:id puoi usarlo qui per pre-caricare i dati
+    async function loadUser() {
+      try {
+        const res = await fetch(`/api/utenti/${user.id}`);
+        if (!res.ok) throw new Error("Errore caricamento");
+        const data = await res.json();
+
+        document.getElementById("nome").value = data.nome || "";
+        document.getElementById("cognome").value = data.cognome || "";
+        document.getElementById("email").value = data.email || "";
+        document.getElementById("indirizzo").value = data.indirizzo || "";
+      } catch (err) {
+        msg.style.color = "red";
+        msg.textContent = "Impossibile caricare i dati";
+      }
+    }
+
+    loadUser();
+
+    editBtn.addEventListener("click", () => {
+      inputs.forEach(input => input.disabled = false);
+      saveBtn.disabled = false;
+      msg.textContent = "";
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const payload = {
+        nome: document.getElementById("nome").value,
+        cognome: document.getElementById("cognome").value,
+        email: document.getElementById("email").value,
+        indirizzo: document.getElementById("indirizzo").value
+      };
+
+      try {
+        const res = await fetch(`/api/utenti/${user.id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          msg.style.color = "green";
+          msg.textContent = "Profilo aggiornato con successo!";
+          inputs.forEach(input => input.disabled = true);
+          saveBtn.disabled = true;
+        } else {
+          msg.style.color = "red";
+          msg.textContent = data.error || "Errore aggiornamento";
+        }
+      } catch (err) {
+        msg.style.color = "red";
+        msg.textContent = "Errore di connessione";
+      }
+    });
+
+    document.getElementById("backBtn").addEventListener("click", () => {
+      history.back();
+    });
+
+  </script>
+</body>
+</html>
