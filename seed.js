@@ -15,7 +15,7 @@ const categorie = [
   { nome: "Thriller", descrizione: "Libri di suspense e thriller" },
   { nome: "Fantascienza", descrizione: "Libri di fantascienza" },
   { nome: "Fantasy", descrizione: "Libri fantasy" },
-  { nome: "Romanzo Rosa", descrizione: "Romanzi romantici" },
+  { nome: "Romanzo rosa", descrizione: "Romanzi romantici" },
   { nome: "Storico", descrizione: "Libri di storia e romanzi storici" },
   { nome: "Horror", descrizione: "Libri horror" },
   { nome: "Biografie", descrizione: "Biografie e autobiografie" },
@@ -25,7 +25,8 @@ const categorie = [
   { nome: "Umoristico", descrizione: "Libri divertenti e satirici" },
   { nome: "Psicologico", descrizione: "Libri di narrativa psicologica" },
   { nome: "Distopico", descrizione: "Romanzi distopici e futuristici" },
-  { nome: "Poesia", descrizione: "Raccolte di poesie classiche e moderne" }
+  { nome: "Poesia", descrizione: "Raccolte di poesie classiche e moderne" },
+  { nome: "Novità", descrizione: "Libri pubblicati di recente"}
 
 ];
 
@@ -38,24 +39,57 @@ const libri = [
   { titolo: "Le otto montagne", autore: "Paolo Cognetti", prezzo: 11.90, categoria_id: 1, descrizione: "La storia di un'amicizia e della ricerca di sé tra le montagne italiane." },
   { titolo: "L'amica geniale", autore: "Elena Ferrante", prezzo: 10.99, categoria_id: 1, descrizione: "La complessa amicizia tra due ragazze nella Napoli del dopoguerra." },
   { titolo: "Il nome della rosa", autore: "Umberto Eco", prezzo: 13.90, categoria_id: 1, descrizione: "Un giallo medievale che unisce mistero, filosofia e teologia." },
+  { titolo: "La strada", autore: "Cormac McCarthy", prezzo: 11.40, categoria_id: 1, descrizione: "Un padre e un figlio viaggiano in un mondo post-apocalittico." },
+  { titolo: "Il Gattopardo", autore: "Giuseppe Tomasi di Lampedusa", prezzo: 10.80, categoria_id: 1, descrizione: "Romanzo storico e familiare ambientato in Sicilia nell'Ottocento." },
+  { titolo: "Se questo è un uomo", autore: "Primo Levi", prezzo: 9.90, categoria_id: 1, descrizione: "La testimonianza dell'autore sopravvissuto ai campi di sterminio." },
+  { titolo: "La coscienza di Zeno", autore: "Italo Svevo", prezzo: 10.50, categoria_id: 1, descrizione: "Un classico che esplora nevrosi, ironia e psicanalisi." },
+  { titolo: "La lunga attesa dell'angelo", autore: "Melania G. Mazzucco", prezzo: 12.30, categoria_id: 1, descrizione: "Ritratto immaginario della vita del pittore Tintoretto." },
+  { titolo: "Il barone rampante", autore: "Italo Calvino", prezzo: 11.00, categoria_id: 1, descrizione: "Un ragazzo sceglie di vivere sugli alberi, tra ribellione e avventura." },
 
   // 2. Thriller
   { titolo: "La ragazza del treno", autore: "Paula Hawkins", prezzo: 10.00, categoria_id: 2, descrizione: "Un thriller psicologico pieno di suspense e colpi di scena." },
   { titolo: "Uomini che odiano le donne", autore: "Stieg Larsson", prezzo: 11.99, categoria_id: 2, descrizione: "Indagini e misteri che ruotano attorno a un caso di scomparsa irrisolto." },
   { titolo: "Shutter Island", autore: "Dennis Lehane", prezzo: 9.75, categoria_id: 2, descrizione: "Un detective indaga su una misteriosa sparizione in un ospedale psichiatrico." },
+  { titolo: "Il silenzio degli innocenti", autore: "Thomas Harris", prezzo: 11.20, categoria_id: 2, descrizione: "Il celebre caso di Hannibal Lecter e l'agente Clarice Starling." },
+  { titolo: "La verità sul caso Harry Quebert", autore: "Joël Dicker", prezzo: 12.40, categoria_id: 2, descrizione: "Un giovane scrittore indaga su un misterioso omicidio irrisolto." },
+  { titolo: "Io uccido", autore: "Giorgio Faletti", prezzo: 10.80, categoria_id: 2, descrizione: "Un thriller ambientato a Monte Carlo, pieno di colpi di scena." },
+  { titolo: "La psichiatra", autore: "Wulf Dorn", prezzo: 10.90, categoria_id: 2, descrizione: "Un caso inquietante che esplora mente e follia." },
+  { titolo: "Il codice Da Vinci", autore: "Dan Brown", prezzo: 12.00, categoria_id: 2, descrizione: "Un enigma tra arte, religione e mistero." },
+  { titolo: "Angeli e Demoni", autore: "Dan Brown", prezzo: 11.50, categoria_id: 2, descrizione: "Un'avventura mozzafiato tra Vaticano e segreti millenari." },
+  { titolo: "Nessuno si salva da solo", autore: "Margaret Murphy", prezzo: 10.70, categoria_id: 2, descrizione: "Una storia oscura di segreti e manipolazioni." },
+  { titolo: "L'ipotesi del male", autore: "Donato Carrisi", prezzo: 11.60, categoria_id: 2, descrizione: "Un'indagine dove nulla è come sembra." },
+  { titolo: "Il tribunale delle anime", autore: "Donato Carrisi", prezzo: 12.90, categoria_id: 2, descrizione: "Un thriller tra Vaticano e segreti oscuri." },
 
   // 3. Fantascienza
   { titolo: "Dune", autore: "Frank Herbert", prezzo: 14.90, categoria_id: 3, descrizione: "Un'epica saga interplanetaria su potere, politica e destino." },
   { titolo: "Fondazione", autore: "Isaac Asimov", prezzo: 12.50, categoria_id: 3, descrizione: "La lotta per preservare la conoscenza in un impero galattico in declino." },
   { titolo: "Neuromante", autore: "William Gibson", prezzo: 11.00, categoria_id: 3, descrizione: "Un romanzo cyberpunk che ha definito il genere informatico e hacker." },
+  { titolo: "Hyperion", autore: "Dan Simmons", prezzo: 13.90, categoria_id: 3, descrizione: "Un pellegrinaggio cosmico verso il misterioso Shrike." },
+  { titolo: "Snow Crash", autore: "Neal Stephenson", prezzo: 11.40, categoria_id: 3, descrizione: "Un classico del cyberpunk su linguaggio, potere e realtà virtuale." },
+  { titolo: "La mano sinistra delle tenebre", autore: "Ursula K. Le Guin", prezzo: 12.20, categoria_id: 3, descrizione: "Romanzo che esplora società, identità e politica su un pianeta remoto." },
+  { titolo: "Solaris", autore: "Stanisław Lem", prezzo: 10.80, categoria_id: 3, descrizione: "Un pianeta cosciente mette alla prova la psiche umana." },
+  { titolo: "La guerra dei mondi", autore: "H.G. Wells", prezzo: 9.90, categoria_id: 3, descrizione: "Un'invasione aliena raccontata con tensione e innovazione." },
+  { titolo: "Ubik", autore: "Philip K. Dick", prezzo: 11.00, categoria_id: 3, descrizione: "Realtà alternative e il confine tra vita e morte." },
+  { titolo: "Il problema dei tre corpi", autore: "Liu Cixin", prezzo: 13.50, categoria_id: 3, descrizione: "Una trilogia che ha rivoluzionato la fantascienza cinese." },
+  { titolo: "Fahrenheit 451", autore: "Ray Bradbury", prezzo: 9.90, categoria_id: 3, descrizione: "Un futuro distopico dove i libri sono proibiti." },
+  { titolo: "L'invasione degli ultracorpi", autore: "Jack Finney", prezzo: 10.70, categoria_id: 3, descrizione: "Un classico sulle sostituzioni aliene degli esseri umani." },
 
   // 4. Fantasy
   { titolo: "Il signore degli anelli", autore: "J.R.R. Tolkien", prezzo: 16.99, categoria_id: 4, descrizione: "Un viaggio epico per distruggere un potente anello malvagio.", img: "https://covers.openlibrary.org/b/id/10716508-L.jpg" },
   { titolo: "Harry Potter e la Pietra Filosofale", autore: "J.K. Rowling", prezzo: 8.90, categoria_id: 4, descrizione: "Il giovane Harry scopre di essere un mago e inizia la sua avventura a Hogwarts." },
   { titolo: "Eragon", autore: "Christopher Paolini", prezzo: 10.50, categoria_id: 4, descrizione: "Un ragazzo scopre di essere l'ultimo Cavaliere dei Draghi e parte per un'avventura." },
+  { titolo: "Le cronache di Narnia", autore: "C.S. Lewis", prezzo: 10.90, categoria_id: 4, descrizione: "Un mondo magico scoperto attraverso un armadio incantato." },
+  { titolo: "La ruota del tempo", autore: "Robert Jordan", prezzo: 13.50, categoria_id: 4, descrizione: "Una lunga saga fantasy tra magia, destino e battaglie epiche." },
+  { titolo: "Mistborn - L'Ultimo Impero", autore: "Brandon Sanderson", prezzo: 12.40, categoria_id: 4, descrizione: "Un mondo governato da un tiranno e rivoluzionari con poteri magici." },
+  { titolo: "La Spada di Shannara", autore: "Terry Brooks", prezzo: 11.80, categoria_id: 4, descrizione: "Avventura fantasy classica con eroi e magie antiche." },
+  { titolo: "American Gods", autore: "Neil Gaiman", prezzo: 12.00, categoria_id: 4, descrizione: "Un viaggio che intreccia dèi antichi e moderni negli USA." },
+  { titolo: "La Bussola d'Oro", autore: "Philip Pullman", prezzo: 11.30, categoria_id: 4, descrizione: "Il primo volume della trilogia 'Queste Oscure Materie'." },
+  { titolo: "Il Ciclo di Conan", autore: "Robert E. Howard", prezzo: 10.90, categoria_id: 4, descrizione: "Le leggendarie imprese del barbaro più famoso della letteratura." },
+  { titolo: "Le cronache di Amber", autore: "Roger Zelazny", prezzo: 13.20, categoria_id: 4, descrizione: "Un mondo di intrighi, poteri e regni paralleli." },
+  { titolo: "Il trono di ghiaccio", autore: "Sarah J. Maas", prezzo: 11.70, categoria_id: 4, descrizione: "La saga fantasy della giovane assassina Celaena Sardothien." },
 
-  // 5. Romanzo Rosa
-  { titolo: "Orgoglio e Prejudizio", autore: "Jane Austen", prezzo: 9.90, categoria_id: 5, descrizione: "L'amore e le convenzioni sociali nell'Inghilterra del XIX secolo." },
+  // 5. Romanzo rosa
+  { titolo: "Orgoglio e Pregiudizio", autore: "Jane Austen", prezzo: 9.90, categoria_id: 5, descrizione: "L'amore e le convenzioni sociali nell'Inghilterra del XIX secolo.", img: "https://covers.openlibrary.org/b/id/12884289-L.jpg" },
   { titolo: "Come l'acqua per il cioccolato", autore: "Laura Esquivel", prezzo: 10.50, categoria_id: 5, descrizione: "Storia d'amore e cucina, tra emozioni e tradizioni familiari." },
   { titolo: "Sogni e delitti", autore: "Lisa Kleypas", prezzo: 11.20, categoria_id: 5, descrizione: "Intrighi romantici e colpi di scena in un contesto storico elegante." },
   { titolo: "Le pagine della nostra vita", autore: "Nicholas Sparks", prezzo: 12.00, categoria_id: 5, descrizione: "Una storia d'amore intensa che supera prove e avversità." },
@@ -63,7 +97,7 @@ const libri = [
   { titolo: "Il giardino segreto", autore: "Frances Hodgson Burnett", prezzo: 10.90, categoria_id: 5, descrizione: "Una ragazza scopre un giardino segreto che cambierà la sua vita." },
   { titolo: "La prima volta che ho visto Parigi", autore: "Paula McLain", prezzo: 11.00, categoria_id: 5, descrizione: "Romance storico ambientato nella Parigi degli anni '20." },
   { titolo: "Uno splendido disastro", autore: "Jamie McGuire", prezzo: 9.80, categoria_id: 5, descrizione: "Una storia di amore turbolento tra due giovani dal carattere opposto." },
-  { titolo: "Il profumo delle foglie di limone", autore: "Clara Sanchez", prezzo: 12.40, categoria_id: 5, descrizione: "Una vicenda di ricordi e misteri legati a un amore perduto." },
+  { titolo: "Il profumo delle foglie di limone", autore: "Clara Sanchez", prezzo: 12.40, categoria_id: 5, descrizione: "Una vicenda di ricordi e misteri legati a un amore perduto.", img: "https://covers.openlibrary.org/b/id/10834596-L.jpg" },
   { titolo: "Le coincidenze dell'amore", autore: "Jane Green", prezzo: 10.30, categoria_id: 5, descrizione: "L'incontro casuale che cambierà il destino dei protagonisti." },
   { titolo: "Ti amerò sempre, cara", autore: "Cecelia Ahern", prezzo: 14.00, categoria_id: 5, descrizione: "Una commovente storia d'amore e legami indissolubili." },
   { titolo: "La voce invisibile delle cose", autore: "Agnès Ledig", prezzo: 11.50, categoria_id: 5, descrizione: "Una giovane donna affronta il dolore e la rinascita personale." },
@@ -198,12 +232,27 @@ const libri = [
   { titolo: "Amore e Psiche", autore: "Apuleio", prezzo: 11.00, categoria_id: 15, descrizione: "Racconto poetico mitologico sull'amore e le prove del destino." },
   { titolo: "Il sabato del villaggio", autore: "Giacomo Leopardi", prezzo: 8.80, categoria_id: 15, descrizione: "Riflessioni poetiche sulla vita quotidiana e i piccoli piaceri." },
 
+  // 16. Novità
+  { titolo: "L'eco del futuro", autore: "Giulia Rossi", prezzo: 14.90, categoria_id: 16, descrizione: "Un viaggio nel tempo tra misteri e colpi di scena." },
+  { titolo: "Ombre nella nebbia", autore: "Marco Bianchi", prezzo: 13.50, categoria_id: 16, descrizione: "Un thriller mozzafiato ambientato nella Venezia contemporanea." },
+  { titolo: "Cuori ribelli", autore: "Elena Verdi", prezzo: 12.90, categoria_id: 16, descrizione: "Storia d'amore e coraggio tra giovani ribelli del 2025." },
+  { titolo: "Il segreto del bosco", autore: "Luca Neri", prezzo: 11.80, categoria_id: 16, descrizione: "Un misterioso bosco nasconde verità sconvolgenti." },
+  { titolo: "Sogni di carta", autore: "Sara Conti", prezzo: 13.20, categoria_id: 16, descrizione: "Romanzo emozionante sul potere dei libri e dei sogni." },
+  { titolo: "L'ultimo orologio", autore: "Davide Russo", prezzo: 12.50, categoria_id: 16, descrizione: "Una corsa contro il tempo per salvare il mondo." },
+  { titolo: "Voci lontane", autore: "Francesca Galli", prezzo: 13.00, categoria_id: 16, descrizione: "Racconto di memorie e segreti di famiglia." },
+  { titolo: "Notte infinita", autore: "Alessandro Leone", prezzo: 14.00, categoria_id: 16, descrizione: "Un romanzo noir che sfida ogni aspettativa." },
+  { titolo: "L'ombra della luna", autore: "Martina Ferri", prezzo: 13.40, categoria_id: 16, descrizione: "Avventura e mistero sotto cieli notturni." },
+  { titolo: "Il canto dei ricordi", autore: "Giorgio Romano", prezzo: 12.70, categoria_id: 16, descrizione: "Storia di amicizia e memoria tra passato e presente." },
+  { titolo: "Onde di vetro", autore: "Chiara Moretti", prezzo: 13.60, categoria_id: 16, descrizione: "Romanzo contemporaneo con colpi di scena inattesi." },
+  { titolo: "L'alfabeto dei sogni", autore: "Riccardo Santini", prezzo: 12.90, categoria_id: 16, descrizione: "Un percorso tra fantasia e realtà che cattura il lettore." },
+
 
 ];
 
 async function seed() {
   try {
     // Pulizia tabelle
+    await db.execute("DELETE FROM carrello");
     await db.execute("DELETE FROM libri");
     await db.execute("DELETE FROM categorie");
 
