@@ -304,7 +304,7 @@
       async function addToCart() {
         if (!currentBook) return;
 
-        // Se NON sei loggato → salva in localStorage
+        // Se NON sei loggato, salva in localStorage
         if (!userId) {
           let cart = JSON.parse(localStorage.getItem("cart")) || [];
           // evita duplicati
@@ -317,7 +317,7 @@
           return;
         }
 
-        // Se sei loggato → salva nel backend
+        // Se sei loggato, salva nel backend
         try {
           const res = await fetch(`/api/carrello/${userId}`, {
             method: "POST",
