@@ -180,11 +180,11 @@
   async function loadCart() {
     try {
       if (userId) {
-        // caso utente loggato → prendo dal backend
+        // caso utente loggato, prendo dal backend
         const res = await fetch(`/api/carrello/${userId}`);
         cartBooks = await res.json();
       } else {
-        // caso ospite → prendo dal localStorage
+        // caso ospite, prendo dal localStorage
         cartBooks = JSON.parse(localStorage.getItem("cart")) || [];
       }
 
